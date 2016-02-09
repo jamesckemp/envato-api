@@ -112,6 +112,45 @@ if ( ! class_exists( 'Envato_API' ) ) {
         }
 
         /**
+         * Retrieve the prices for a specific marketplace item.
+         *
+         * @param     string      $item_id The id of the item you need information for.
+         * @return    object      Details for the given item.
+         *
+         * @access    public
+         */
+        public function item_prices( $item_id, $allow_cache = true, $timeout = 300 ) {
+
+            $url = str_replace('/v3/', sprintf('/v1/market/item-prices:%s.json', $item_id), $this->public_url);
+
+            /* set transient ID for later */
+            $transient = substr( md5( 'prices_' . $item_id ), 0, 16 );
+
+            if ( $allow_cache ) {
+                $cache_results = $this->set_cache( $transient, $url, $timeout );
+                $results = $cache_results;
+            } else {
+                $results = $this->remote_request( $url );
+            }
+
+            if ( isset( $results->error ) ) {
+                $this->set_error( 'error_prices_' . $item_id, $results->error );
+            }
+
+            if ( $errors = $this->api_errors() ) {
+                $this->clear_cache( $transient );
+                return $errors;
+            }
+
+            if ( isset( $results ) ) {
+                return $results;
+            }
+
+            return false;
+
+        }
+
+        /**
          * Set cache with the Transients API.
          *
          * @link      http://codex.wordpress.org/Transients_API
