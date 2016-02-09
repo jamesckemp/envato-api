@@ -12,6 +12,8 @@ Head over to https://build.envato.com/ to get yourself a personal token.
 
 ## Methods
 
-`item_details( $id )` Get full item details
+### Get full item details
+`item_details( $item_id, $allow_cache = true, $timeout = 300 )`
 
-`item_prices( $id )` Get all prices for an item
+### Get all prices for an item
+`item_prices( $item_id, $allow_cache = true, $timeout = 300 )`
