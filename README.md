@@ -9,3 +9,9 @@ Uses WordPress transients to cache the API results.
 ## Personal Token
 
 Head over to https://build.envato.com/ to get yourself a personal token.
+
+## Methods
+
+`item_details( $id )` Get full item details
+
+`item_prices( $id )` Get all prices for an item
