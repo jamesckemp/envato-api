@@ -2,7 +2,7 @@
 
 Modified version of the Envato API included in the new Envato Update script. Uses API v3, which means you can fetch some quality item data, like WordPress theme/plugin meta.
 
-Currently you can only get an items details, but should be easy enough to add more methods. See the example.php for more info on how to use it.
+See the example.php for more info on how to use it.
 
 Uses WordPress transients to cache the API results.
 
